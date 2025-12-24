@@ -1,0 +1,28 @@
+plugins = []
+headers = []
+redirects = []
+
+[functions]
+
+[functions."*"]
+
+[build]
+publish = "/Users/Alaa/Desktop/React-cohort54/week1/project/ecommerce/dist"
+publishOrigin = "ui"
+commandOrigin = "ui"
+base = "/Users/Alaa/Desktop/React-cohort54/week1/project/ecommerce"
+command = "npm run build"
+
+[build.environment]
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
