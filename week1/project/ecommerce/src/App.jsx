@@ -8,32 +8,21 @@ function App() {
   const [productsToShow, filterProductsToShow] = useState(allProducts);
   const [activeCategory, setActieCategory] = useState(null);
 
-  const displaySelectedCategory = (category) => {
-    setActieCategory(category);
+  const displaySelectedCategory = (selectedCategory) => {
+    setActieCategory(selectedCategory);
 
-    if (category === "FAKE: electronics") {
-      const electronics = allProducts.filter(
-        (product) => product.category === "electronics"
-      );
-      filterProductsToShow(electronics);
-    } else if (category === "FAKE: jewelery") {
-      const jewelery = allProducts.filter(
-        (product) => product.category === "jewelery"
-      );
-      filterProductsToShow(jewelery);
-    } else if (category === "FAKE: men's clothing") {
-      const menClothing = allProducts.filter(
-        (product) => product.category === "men's clothing"
-      );
-      filterProductsToShow(menClothing);
-    } else if (category === "FAKE: women's clothing") {
-      const womenClothing = allProducts.filter(
-        (product) => product.category === "women's clothing"
-      );
-      filterProductsToShow(womenClothing);
-    } else {
+    if (selectedCategory === null) {
       filterProductsToShow(allProducts);
+      return;
     }
+
+    const cleanSelectedCategory = selectedCategory.replace("FAKE: ", "");
+
+    const filteredProducts = allProducts.filter((product) => {
+      return product.category === cleanSelectedCategory;
+    });
+
+    filterProductsToShow(filteredProducts);
   };
 
   return (
