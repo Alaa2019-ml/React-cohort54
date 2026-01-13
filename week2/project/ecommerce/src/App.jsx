@@ -1,13 +1,12 @@
 import "./index.css";
 import { useState, useEffect, useCallback } from "react";
-import AllCategories from "./components/all-categories";
-import AllProducts from "./components/all-products";
+import HomePage from "./components/HomePage";
 import ProductDetails from "./components/ProductDetails";
 import { fetchApi } from "./utils/productsApi";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
-  const [productsToShow, filterProductsToShow] = useState(null);
+  const [productsToShow, setProductsToShow] = useState(null);
   const [activeCategory, setActiveCategory] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -19,7 +18,7 @@ function App() {
     try {
       const data = await fetchApi(url);
       console.log("API results: ", data);
-      filterProductsToShow(data);
+      setProductsToShow(data);
     } catch (error) {
       setError(error);
     } finally {
@@ -57,16 +56,13 @@ function App() {
         <Route
           path="/"
           element={
-            <>
-              <h1>Products:</h1>
-              <AllCategories
-                displaySelectedCategory={displaySelectedCategory}
-                activeCategory={activeCategory}
-              />
-              <AllProducts products={productsToShow} />
-            </>
+            <HomePage
+              displaySelectedCategory={displaySelectedCategory}
+              activeCategory={activeCategory}
+              productsToShow={productsToShow}
+            />
           }
-        ></Route>
+        />
         <Route path="/products/:id" element={<ProductDetails />} />
       </Routes>
     </>

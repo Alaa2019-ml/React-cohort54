@@ -39,7 +39,7 @@ function ProductDetails() {
   return (
     <>
       <h1>{product.title}</h1>
-      <img src={product.image} alt={product.title} style={{ width: 200 }} />
+      <img src={product.image} id="product-details-image" alt={product.title} />
       <p>{product.description}</p>
       <p>€ {product.price}</p>
     </>

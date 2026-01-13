@@ -125,6 +125,10 @@ h1 {
   margin-bottom: 10px;
 }
 
+#product-details-image {
+  width: 200px;
+}
+
 .product-title {
   margin-top: auto;
   text-decoration: none;
