@@ -1,11 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { fetchApi } from "../utils/productsApi";
 
-export const useFetch = (url, options = {}) => {
-  const { immediate = true } = options;
-
+export const useFetch = (url) => {
   const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(immediate);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const runFetch = useCallback(
@@ -36,12 +34,12 @@ export const useFetch = (url, options = {}) => {
         setIsLoading(false);
       }
     },
-    [url]
+    [url],
   );
 
   useEffect(() => {
-    if (immediate) runFetch();
-  }, [immediate, runFetch]);
+    runFetch();
+  }, [runFetch]);
 
   return { data, isLoading, error, refetch: runFetch, setData };
 };

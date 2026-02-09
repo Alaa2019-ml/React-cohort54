@@ -9,7 +9,7 @@ const RenderFavorites = () => {
 
   const urls = useMemo(
     () => favourites.map((id) => `${productsApi}/${id}`),
-    [favourites]
+    [favourites],
   );
 
   const { data, isLoading, error } = useFetch(urls);
@@ -17,9 +17,7 @@ const RenderFavorites = () => {
   if (isLoading) return <div>Loading...!</div>;
   if (error) return <div>Something went wrong.</div>;
 
-  if (!favourites || favourites.length === 0)
-    return <h2>You haven't chosen any favourites yet!</h2>;
-  if (!data || data.length === 0)
+  if (!favourites || favourites.length === 0 || !data || data.length === 0)
     return <h2>You haven't chosen any favourites yet!</h2>;
 
   return (

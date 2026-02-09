@@ -1,5 +1,5 @@
 import "./index.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import ProductDetails from "./components/ProductDetails";
@@ -13,17 +13,7 @@ function App() {
   const [activeCategory, setActiveCategory] = useState(null);
   const [productsUrl, setProductsUrl] = useState(productsApi);
 
-  const {
-    data: productsToShow,
-    isLoading,
-    error,
-    refetch,
-  } = useFetch(productsUrl);
-
-  // refetch when category changes
-  useEffect(() => {
-    refetch(productsUrl);
-  }, [productsUrl, refetch]);
+  const { data: productsToShow, isLoading, error } = useFetch(productsUrl);
 
   const displaySelectedCategory = (selectedCategory) => {
     setActiveCategory(selectedCategory);
